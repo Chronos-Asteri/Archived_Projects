@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>WarpCharts</title>
+
+  {% load static %}
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+
+  <!-- Tailwind CSS -->
+
+  <link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+  rel="stylesheet" />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+  <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+  <script>
+  tailwind.config = {
+      darkMode: "class",
+      theme: {
+      fontFamily: {
+          sans: ["Roboto", "sans-serif"],
+          body: ["Roboto", "sans-serif"],
+          mono: ["ui-monospace", "monospace"],
+      },
+      },
+      corePlugins: {
+      preflight: false,
+      },
+  };
+  </script>
+
+<link rel="stylesheet" href={% static 'page_theme_options/style.css'%}>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+  <!-- NAVBAR START -->
+  <div class="navbar">
+    <nav class="bg-black">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <!-- <div class="flex-shrink-0"> -->
+            <div class="logo_image">
+              <img src={% static "logo_and_design_files/warpcharts-high-resolution-logo-white-on-transparent-background.svg"%}>  
+            </div>
+          <!-- </div> -->
+          <!-- Mobile Menu Toggle -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-toggle" class="text-white hover:text-gray-200 focus:outline-none">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          <!-- Menu Items -->
+          <div id="menu-items" class="hidden md:flex justify-center flex-grow">
+            <a href={% url 'home_page' %} class="text-gray-300 hover:text-white px-4">
+              <i class="fas fa-home mr-1"></i>
+              Home
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white px-4">
+              <i class="fas fa-photo-film mr-1"></i>
+              Collection
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white px-4">
+              <i class="fas fa-cogs mr-1"></i>
+              Services
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white px-4">
+              <i class="fas fa-envelope mr-1"></i>
+              Contact
+            </a>
+          </div>
+    
+    
+    
+    
+          <!-- IF LOGIN SHOW -->
+    
+          {% if user.is_authenticated %}
+    
+                  <div class="md:flex-shrink-0 hidden md:block">
+    
+                    <div class="flex items-center space-x-4">
+                      <img class="w-10 h-10 rounded-full" src={% static 'option_images/profile_image.jpg'%} alt="">
+                      
+                        <div class="font-medium text-white">
+                        <a href="{% url 'user_profile' %}">
+                        <div>
+                          {{ user.get_full_name }} 
+                        </div>
+                        </a>
+    
+                        <a href="{% url 'user_profile' %}">
+                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                            Warps Left: 5
+                          </div>
+                        </a>
+    
+                      </div>
+                    </div>
+                  </div>
+    
+          <!-- IF NOT LOGIN SHOW -->
+    
+          {% else %}
+    
+            <!-- Login Button -->
+                <div class="space-x-2">
+                  <div class="float-left md:flex-shrink-0 hidden md:block">
+                    <button type='submit' onclick="location.href='{% url 'login_page' %}'" class="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded">
+                      <i class="fas fa-sign-in-alt mr-1"></i>
+                      Login
+                    </button>
+                  </div>
+    
+                  <div class="float-right md:flex-shrink-0 hidden md:block">
+                    <button type='submit' onclick="location.href='{% url 'signup' %}'" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                      <i class="fas fa-sign-in-alt mr-1"></i>
+                      Sign-Up
+                    </button>
+                  </div>
+                </div>
+    
+          {% endif %}
+      </div>
+    </nav>
+    </div>
+  <!-- NAVBAR END -->
+
+<!-- THEME OPTIONS START -->
+
+<div class="main_bod space-x-4">
+
+  <div class="grid grid-cols-3 gap-4">
+
+  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg" src={% static 'option_images/theme_options/bokeh-logo@2x.jpg' %} alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bokeh</h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          Bokeh is a data visualization library in Python that provides high-performance interactive charts and plots.
+        </p>
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Select
+           <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Info&nbsp;<svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+        </a>
+    </div>
+</div>
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <img class="rounded-t-lg" src={% static 'option_images/theme_options/Plotly-logo.png' %} alt="" />
+  </a>
+  <div class="p-5">
+      <a href="#">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Plotly</h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        Plotly's Python graphing library makes interactive, publication-quality graphs.
+      </p>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Select
+           <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+      </a>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Info&nbsp;<svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+      </a>
+      
+  </div>
+</div>
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <img class="rounded-t-lg" src={% static 'option_images/theme_options/cutecharts.png' %} alt="" />
+  </a>
+  <div class="p-5">
+      <a href="#">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CuteCharts</h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        CuteCharts is a hand drawing style charts library for Python.
+      </p>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Select
+         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </a>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Info&nbsp;<svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+      </a>
+  </div>
+</div>
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <img class="rounded-t-lg" src={% static 'option_images/theme_options/pygap_logo.webp' %} alt="" />
+  </a>
+  <div class="p-5">
+      <a href="#">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PyGal</h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Select
+         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </a>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Info&nbsp;<svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+      </a>
+  </div>
+</div>
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <img class="rounded-t-lg" src={% static 'option_images/theme_options/altair-logo-light.png' %} alt="" />
+  </a>
+  <div class="p-5">
+      <a href="#">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Altair</h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Select
+         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </a>
+      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Info&nbsp;<svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+      </a>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- THEME OPTIONS END -->
+
+<!-- partial -->
+  
+</body>
+</html>

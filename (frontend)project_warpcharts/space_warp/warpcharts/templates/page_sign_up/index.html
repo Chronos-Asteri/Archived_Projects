@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WarpCharts</title>
+
+{% load static %}
+<link rel="stylesheet" href= {% static 'page_sign_up/style.css' %}>
+<!-- Tailwind CSS -->
+
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+rel="stylesheet" />
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+<script src="https://cdn.tailwindcss.com/3.3.0"></script>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+    fontFamily: {
+        sans: ["Roboto", "sans-serif"],
+        body: ["Roboto", "sans-serif"],
+        mono: ["ui-monospace", "monospace"],
+    },
+    },
+    corePlugins: {
+    preflight: false,
+    },
+};
+</script>
+
+</head>
+
+<body class="h-full">
+
+
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <a href={% url 'home_page' %} class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                    <img class="logo_image" src={% static "logo_and_design_files/warpcharts-high-resolution-logo-black-on-transparent-background.svg"%} alt="logo">
+                </a>
+
+                <form class="space-y-4 md:space-y-6" method='POST' action={% url 'signup' %}>
+                    {% csrf_token %}
+                    <div>
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                        <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Erden Meyer" required="">
+                    </div>
+
+                <!-- Usrname Verfication -->
+                    
+                {% if messages %}
+                {% for message in messages %}
+                
+                    {% if message.tags == 'error' %}
+                        <div>
+                            <label for="username-error" class="block mb-2 text-sm font-medium text-red-700 dark:text-red-500">Username</label>
+                            <input type="text" name="username" id="username-error" class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" placeholder="">
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> Username already taken!</p>
+                        </div>
+
+                    {% else %}
+                        <div>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                            <input type="text" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="erdenmeyer28" required="">
+                        </div>  
+                        
+                    {% endif %}
+
+                {% endfor %}
+                
+                {% else %}
+                    <div>
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                        <input type="text" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="erdenmeyer28" required="">
+                    </div>
+
+                {% endif %}
+
+                <!-- Email Verfication -->
+
+                {% if messages %}
+                {% for message in messages %}
+
+                    {% if message.tags == 'info' %}
+                        <div>
+                            <label for="email-error" class="block mb-2 text-sm font-medium text-red-700 dark:text-red-500">Email</label>
+                            <input type="email" name="username" class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" placeholder="" required="">
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> Email already in use!</p>
+                        </div>
+
+                    {% else %}   
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+                
+                {% else %}
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                    </div>
+
+                {% endif %}
+
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                    </div>
+
+                    <button type="submit" class="w-full text-white bg-black hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Sign Up</button>
+                    
+                </form>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                    Already have an account? <a href= {% url 'login_page' %} class="font-medium text-black hover:underline dark:text-black">Log In</a>
+                </p>
+                <!-- <div class="flex flex-row items-center justify-center">
+                  <button
+                      class="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+                      <img class="w-5 h-5 mr-2 -ml-1" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+                      <span>Login with Google</span>
+                  </button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+  </section>
+
+     
+
+<!-- Tailwind JS -->
+<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+
+</body>
+</html>

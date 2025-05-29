@@ -1,0 +1,28 @@
+
+LINK: https://www.kaggle.com/datasets/PromptCloudHQ/flipkart-products
+
+About Dataset
+Context
+This is a pre-crawled dataset, taken as subset of a bigger dataset (more than 5.8 million products) that was created by extracting data from Flipkart.com, a leading Indian eCommerce store.
+
+Content
+This dataset has following fields:
+
+product_url
+product_name
+product_category_tree
+pid
+retail_price
+discounted_price
+image
+is_FK_Advantage_product
+description
+product_rating
+overall_rating
+brand
+product_specifications
+Acknowledgements
+This dataset was created by PromptCloud's in-house web-crawling service.
+
+Inspiration
+Analyses of the pricing, product specification and brand can be performed.

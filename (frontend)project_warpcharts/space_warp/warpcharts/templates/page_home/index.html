@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>WarpCharts</title>
+  <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css'> -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+<script src="https://cdn.tailwindcss.com/3.3.0"></script>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+    fontFamily: {
+        sans: ["Roboto", "sans-serif"],
+        body: ["Roboto", "sans-serif"],
+        mono: ["ui-monospace", "monospace"],
+    },
+    },
+    corePlugins: {
+    preflight: false,
+    },
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% load static %}
+<link rel='stylesheet' href={% static 'page_home/style.css'%}>
+
+</head>
+<body>
+
+{% if messages %}
+  {% for message in messages %}
+
+      <script>
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+        })
+        
+        {% if message.tags == 'info' %}
+
+            Toast.fire({
+              icon: 'info',
+              title: '{{message}}'
+            })
+
+        {% elif message.tags == 'success'%}
+
+            Toast.fire({
+              icon: 'success',
+              title: '{{message}}'
+            })
+
+        {% endif %}
+        
+        </script>
+
+
+  {% endfor %}
+{% endif %}
+
+
+
+
+<!-- partial:index.partial.html -->
+<div class="navbar">
+<nav class="bg-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <!-- <div class="flex-shrink-0"> -->
+        <div class="logo_image">
+          <img src={% static "logo_and_design_files/warpcharts-high-resolution-logo-white-on-transparent-background.svg"%}>  
+        </div>
+      <!-- </div> -->
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-toggle" class="text-white hover:text-gray-200 focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Menu Items -->
+      <div id="menu-items" class="hidden md:flex justify-center flex-grow">
+        <a href={% url 'home_page' %} class="text-gray-300 hover:text-white px-4">
+          <i class="fas fa-home mr-1"></i>
+          Home
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white px-4">
+          <i class="fas fa-photo-film mr-1"></i>
+          Collection
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white px-4">
+          <i class="fas fa-cogs mr-1"></i>
+          Services
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white px-4">
+          <i class="fas fa-envelope mr-1"></i>
+          Contact
+        </a>
+      </div>
+
+
+
+
+      <!-- IF LOGIN SHOW -->
+
+      {% if user.is_authenticated %}
+
+              <div class="md:flex-shrink-0 hidden md:block">
+
+                <div class="flex items-center space-x-4">
+                  <img class="w-10 h-10 rounded-full" src={% static 'option_images/profile_image.jpg'%} alt="">
+                  
+                    <div class="font-medium text-white">
+                    <a href="{% url 'user_profile' %}">
+                    <div>
+                      {{ user.get_full_name }} 
+                    </div>
+                    </a>
+
+                    <a href="{% url 'user_profile' %}">
+                      <div class="text-sm text-gray-500 dark:text-gray-400">
+                        Warps Left: 5
+                      </div>
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+
+      <!-- IF NOT LOGIN SHOW -->
+
+      {% else %}
+
+        <!-- Login Button -->
+            <div class="space-x-2">
+              <div class="float-left md:flex-shrink-0 hidden md:block">
+                <button type='submit' onclick="location.href='{% url 'login_page' %}'" class="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded">
+                  <i class="fas fa-sign-in-alt mr-1"></i>
+                  Login
+                </button>
+              </div>
+
+              <div class="float-right md:flex-shrink-0 hidden md:block">
+                <button type='submit' onclick="location.href='{% url 'signup' %}'" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                  <i class="fas fa-sign-in-alt mr-1"></i>
+                  Sign-Up
+                </button>
+              </div>
+            </div>
+
+      {% endif %}
+
+    <!-- Responsive Dropdown Menu -->
+    <!-- <div id="responsive-menu" class="md:hidden hidden bg-blue-900">
+      <a href="#" class="block py-2 px-4 text-gray-300 hover:text-white">
+        <i class="fas fa-home mr-1"></i>
+        Home
+      </a>
+      <a href="#" class="block py-2 px-4 text-gray-300 hover:text-white">
+        <i class="fas fa-info-circle mr-1"></i>
+        About
+      </a>
+      <a href="#" class="block py-2 px-4 text-gray-300 hover:text-white">
+        <i class="fas fa-cogs mr-1"></i>
+        Services
+      </a>
+      <a href="#" class="block py-2 px-4 text-gray-300 hover:text-white">
+        <i class="fas fa-envelope mr-1"></i>
+        Contact
+      </a>
+    </div> -->
+  </div>
+</nav>
+</div>
+
+
+<div class="bod">
+<div class="container">
+  <div class="card" style="--clr: #000000">
+      <div class="img-box">
+          <img src={% static 'option_images/scatter_plot.svg'%}>
+      </div>
+      <div class="content">
+          <h2>Scatter Chart</h2>
+          <a href={% url 'file_upload' 'scatter' %}>Select -></a>
+      </div>
+  </div>
+  <div class="card" style="--clr: #000000">
+      <div class="img-box">
+          <img src={% static "option_images/line_plot.svg"%}>
+      </div>
+      <div class="content">
+          <h2>Line Chart</h2>
+          <a href={% url 'file_upload' 'line' %}>Select -></a>
+      </div>
+  </div>
+  <div class="card" style="--clr: #000000">
+      <div class="img-box">
+          <img src={% static "option_images/radial_chart.svg"%}>
+      </div>
+      <div class="content">
+          <h2>Pie/Donut Chart</h2>
+          <a href={% url 'file_upload' 'pie_donut' %}>Select -></a>
+      </div>
+  </div>
+  
+  <div class="card" style="--clr: #000000">
+      <div class="img-box">
+          <img src={% static "option_images/bubble_plot.svg"%}>
+      </div>
+      <div class="content">
+          <h2>Bubble Chart</h2>
+          <a href={% url 'file_upload' 'bubble' %}>Select -></a>
+      </div>
+  </div>
+  <div class="card" style="--clr: #000000">
+      <div class="img-box">
+          <img src={% static "option_images/bar_plot.jpg"%}>
+      </div>
+      <div class="content">
+          <h2>Bar Chart</h2>
+          <a href={% url 'file_upload' 'bar' %}>Select -></a>
+      </div>
+  </div>
+</div>
+</div>
+<!-- partial -->
+
+</body>
+</html>
