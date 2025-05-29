@@ -20,7 +20,7 @@ Pre-Development Ideas - [pdf](./E-Commerce%20Tools.pdf))
 
 ## Why I archived This Project
 
-To be honest this is something I would pick it up again probably after some time after I gain enough knowledge in recommender systems and how to create a much better version of the existing one. The aim is to create a hybrid recommender which combines various recommender into one, each having its own weight (described in detail in the [pdf](./E-Commerce%20Tools.pdf)) thus fine tuning these weights to get better results. Although existing SaaS such as Shopify provide this service along with a lot others thus could be the biggest risk while continuing this project
+To be honest this is something I would pick it up again probably after some time after I gain enough knowledge in recommender systems and how to create a much better version of the existing one. The aim is to create a hybrid recommender which combines various recommender into one, each having its own weight thus fine tuning these weights to get better results. Although existing SaaS such as Shopify provide this service along with a lot others thus could be the biggest risk while continuing this project
 
 ## Screenshots
 
