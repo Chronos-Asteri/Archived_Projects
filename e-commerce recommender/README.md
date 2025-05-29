@@ -12,6 +12,11 @@ This project was started so as to become an upgraded version of the movie-recomm
 
 This recommender system was supposed to be designed as an API which then could be implement/integrated into other existing e-commerce websites
 
+Pre-Development Ideas - [pdf](./E-Commerce%20Tools.pdf))
+
+> [!NOTE]
+> Refer to this `pdf` for additional information 
+
 
 ## Why I archived This Project
 
