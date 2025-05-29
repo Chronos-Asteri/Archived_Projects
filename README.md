@@ -5,5 +5,5 @@ These are some of the projects that I have started during the last few years, mo
 ## INDEX
 
 1. Project Management Software [read more...](./project_management_software/)
-2. Project WarpCharts [read more...](./project_warpcharts/README.md)
-3. E-Commerce Recommender Systems [read more...](./e-commerce%20recommender/README.md)
+2. Project WarpCharts [read more...](./project_warpcharts/)
+3. E-Commerce Recommender Systems [read more...](./e-commerce%20recommender/)
